@@ -1,0 +1,33 @@
+
+Conception : https://gitmind.com/app/diagrams/dir/e41472825594991f95433093c700c983
+
+
+
+font family :
+
+name : 
+font-family: 'Montserrat', sans-serif;
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cabin&family=Dancing+Script&family=Montserrat:wght@200&family=Saira+Condensed:wght@100&family=Source+Code+Pro:wght@200&family=Ubuntu+Mono&display=swap" rel="stylesheet">
+
+canva : 
+
+best main image for home page :
+https://www.canva.com/templates/EAE1bn5-qZo-white-pink-black-modern-colorful-3d-special-promo-valentine-s-shopping-day-facebook-cover/
+
+exemple of gift logo :
+https://www.canva.com/templates/EAErMJ4wGmc-feminine-elegant-flower-store-logo-template/
+
+
+
+<VirtualHost *:80>
+    DocumentRoot "C:/xampp/htdocs/gestion_trains/public"
+    ServerName trains.ma
+</VirtualHost>
+
+<VirtualHost *:80>
+    DocumentRoot "C:/xampp/htdocs/rendez-vous/public"
+    ServerName rdv.ma
+</VirtualHost>
