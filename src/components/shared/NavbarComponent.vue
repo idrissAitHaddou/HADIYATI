@@ -15,48 +15,26 @@
 
         <div
           id="dropdownCategories"
-          class="hidden z-50 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700"
+          class="hidden z-50 w-44 h-80 overflow-y-scroll bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700"
         >
           <ul
+            v-for="categorei in categoreis" :key="categorei.id"
             class="py-1 text-sm text-gray-700 dark:text-gray-200"
             aria-labelledby="dropdownDefault"
           >
-            <li>
-              <a
-                href="#"
-                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-              >
-                <!-- <font-awesome-icon class="heart" icon="bars" /> -->
-                anniversaire
-              </a>
+            <li v-if="categorei.name!='all'" @click="categorie=categorei.id">
+            <!-- <template > -->
+
+                <router-link
+                to="/search"
+                class="block py-2 px-4 hover:bg-gray-100 text-black"
+                >
+                  {{categorei.name}}
+                  </router-link>
+             
+            <!-- </template> -->
             </li>
-            <li>
-              <a
-                href="#"
-                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-              >
-                <!-- <font-awesome-icon class="heart" icon="bars" /> -->
-                l'amour
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-              >
-                <!-- <font-awesome-icon class="heart" icon="bars" /> -->
-                copines
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-              >
-                <!-- <font-awesome-icon class="heart" icon="bars" /> -->
-                mariage
-              </a>
-            </li>
+ 
           </ul>
         </div>
         <a href="/" class="flex items-center">
@@ -179,20 +157,27 @@
           <div
             class="flex absolute inset-y-0 right-0 items-center pr-3 cursor-pointer"
           >
-            <a href="/search"><svg
-              class="w-5 h-5 text-main-color"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                clip-rule="evenodd"
-              />
-            </svg></a>
+           
+              <router-link
+                to="/search"
+              >
+                <svg
+                class="w-5 h-5 text-main-color"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </router-link>
+            
           </div>
           <input
+            v-model="nameProduct"
             type="text"
             id="search"
             class="block p-2 pl-10 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -219,19 +204,43 @@
         </div>
       </div>
     </nav>
-
-    <router-view />
+    
+    <router-view :categorie="categorie" :nameProduct="nameProduct"></router-view>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: "navbarComponent",
+  data(){
+    return{
+      categoreis : [],
+      categorie : '',
+      nameProduct : '',
+    }
+  },
   components: {},
+  created(){
+      this.getCategoreis()
+  },
   methods : {
     toggleProfileMenu(){
       const men = document.getElementById('menuProfile');
       men.classList.toggle('hidden');
+    },
+   async getCategoreis(){
+      try {
+        const response = await axios.get("http://localhost/hadiyati/categories");
+        const data = await JSON.parse(JSON.stringify(response.data));
+        if (data) {
+          this.categoreis = data;
+          console.log(data)
+          console.log(this.categoreis)
+        }
+      } catch (error) {
+        console.log(error);
+      }
     }
   }
 };

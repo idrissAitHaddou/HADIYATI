@@ -31,7 +31,7 @@ const routes = [
     component: PanierView
   },
   {
-    path: '/product-details/:slug',
+    path: '/cart/:id',
     name: 'productView',
     component: ProductView
   },

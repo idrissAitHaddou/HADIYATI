@@ -2,7 +2,7 @@
   <div class="bg-body-color">
     <CarouselComponent/>
     <MainCategoryComponent/>
-    <BestCategoriesComponent/>
+    <!-- <BestCategoriesComponent/> -->
     <SliderPlusVendus/>
     <MeilleurSousMadComponent/>
     <SendWorldwideComponent/>
@@ -13,7 +13,7 @@
 <script>
 import CarouselComponent from '../components/home/CarouselComponent.vue'
 import MainCategoryComponent from '../components/home/MainCategoryComponent.vue'
-import BestCategoriesComponent from '../components/home/BestCategoriesComponent.vue'
+// import BestCategoriesComponent from '../components/home/BestCategoriesComponent.vue'
 import SliderPlusVendus from '../components/home/SliderPlusVendus.vue'
 import MeilleurSousMadComponent from '../components/home/MeilleurSousMadComponent.vue'
 import SendWorldwideComponent from '../components/home/SendWorldwideComponent.vue'
@@ -25,7 +25,7 @@ export default {
   components: {
     CarouselComponent,
     MainCategoryComponent,
-    BestCategoriesComponent,
+    // BestCategoriesComponent,
     SliderPlusVendus,
     MeilleurSousMadComponent,
     SendWorldwideComponent,

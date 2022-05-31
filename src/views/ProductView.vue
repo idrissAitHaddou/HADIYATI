@@ -37,7 +37,7 @@
                         <span class="mt-3 w-6 h-6 text-sm text-red-600 text-center font-bold">1</span>
                         <button class="mt-3 w-6 h-6 bg-red-600 text-sm text-white font-bold flex item-center justify-center">+</button>
                     </div>
-                    <button class="w-48 mt-4 p-2 bg-red-500 text-xs whitespace-nowrap font-bold rounded-lg text-white">COMMANDER (198.00 DHS)</button>
+                    <button class="w-48 mt-4 p-2 bg-red-500 text-xs whitespace-nowrap font-bold rounded-lg text-white">Ajouter</button>
                 </div>
             </div>
         </div>
@@ -46,6 +46,7 @@
     </div>
 </template>
 <script>
+// $route.params.id
 export default {
     data(){
 
