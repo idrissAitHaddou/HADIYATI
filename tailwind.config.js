@@ -6,7 +6,7 @@ module.exports = {
   ],
   theme: {
     colors : {
-       'main-color' : '#DA2F47',
+       'main-color' : '#F4BFBF',
        'body-color' : '#F2F2F2',
        'title'   : '#F3F8F9'
     },
@@ -16,3 +16,4 @@ module.exports = {
     require('flowbite/plugin')
   ],
 }
+// #DA2F47

@@ -1,7 +1,7 @@
 <template>
 
   <div class="bg-body-color">
-    <NavbarComponent/>
+    <NavbarComponent />
     <Footer/>
   </div>
   
@@ -15,6 +15,26 @@ export default {
   components : {
     NavbarComponent,
      Footer
+  },
+  data(){
+    return{
+      cart : {
+        items : [],
+      }
+    }
+  },
+  beforeCreate(){
+    this.$store.commit('inisializeStore')
+  },
+  mounted(){
+     this.cart = this.$store.state.cart
+     console.log('----------------- state car --------------------------')
+     console.log(this.cart)
+  },
+  methods : {
+        cartTotalLenght(){
+         
+        }
   }
 }
 

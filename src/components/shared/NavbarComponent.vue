@@ -1,7 +1,7 @@
 <template>
   <div>
     <nav
-      class="bg-main-color border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-800"
+      class="relative bg-white border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-800 z-50"
     >
       <div
         class="container flex flex-wrap justify-between items-center mx-auto"
@@ -9,7 +9,7 @@
         <font-awesome-icon
           id="dropdownDefault"
           data-dropdown-toggle="dropdownCategories"
-          class="cursor-pointer text-white"
+          class="cursor-pointer text-white hidden"
           icon="bars"
         />
 
@@ -23,56 +23,54 @@
             aria-labelledby="dropdownDefault"
           >
             <li v-if="categorei.name!='all'" @click="categorie=categorei.id">
-            <!-- <template > -->
-
                 <router-link
                 to="/search"
                 class="block py-2 px-4 hover:bg-gray-100 text-black"
                 >
                   {{categorei.name}}
                   </router-link>
-             
-            <!-- </template> -->
             </li>
  
           </ul>
         </div>
-        <a href="/" class="flex items-center">
-          <img
-            src="../../assets/images/logo.svg"
-            class="mr-3 h-6 xl:ml-0 ml-6"
-            style="transform: scale(2.3)"
-            alt="Flowbite Logo"
-          />
-        </a>
+        
+        <router-link to="/">
+              <img
+                src="../../assets/images/logo.svg"
+                class="mr-3 h-6 xl:ml-0 ml-6"
+                style="transform: scale(2.3)"
+                alt="Flowbite Logo"
+              /> 
+              <!-- <img
+                :src="require('http://localhost/hadiyati/public/images/'+imgSrc)"
+                class="mr-3 h-6 xl:ml-0 ml-6"
+                style="transform: scale(2.3)"
+                alt="Flowbite Logo"
+              /> -->
+           
+          </router-link>
         <div class="flex items-center md:order-2 sm:order-2">
+              <div class="totalPro mr-4">
+                  <span>{{$store.state.totalLength}}</span>
+                  <span>{{$store.state.totalLength}}</span>
+              </div>
+                <router-link to="/panier">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                  </svg>
+                </router-link>
           <button
+            v-if="$store.state.id_user_login!=0"
             type="button"
-            class="flex mr-3 text-sm bg-main-color rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 relative"
-          >
-            <span
-              class="absolute right-0 bottom-5 bg-white border rounded-full flex item-center justify-center font-medium text-main-color px-1"
-              >2</span
-            >
-            <a href="/panier"><img
-              class="w-8 h-8 rounded-full bg-main-color border border-0 outline-none"
-              src="../../assets/images/panier.svg"
-              alt="user photo"
-            /></a>
-          </button>
-          <button
-            type="button"
-            class="flex ml-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+            class="flex ml-4 text-sm rounded-full md:mr-0"
             id="user-menu-button"
             aria-expanded="false"
             data-dropdown-toggle="menuProfile"
           >
             <span class="sr-only">Open user menu</span>
-            <img
-              class="w-8 h-8 rounded-full"
-              src="../../assets/images/profile.png"
-              alt="user photo"
-            />
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+            </svg>
           </button>
 
           <div
@@ -89,27 +87,34 @@
             data-popper-placement="top"
           >
             <div class="py-3 px-4">
-              <span class="block text-sm text-gray-900 dark:text-white"
-                >Bonnie Green</span
-              >
               <span
-                class="block text-sm font-medium text-gray-500 truncate dark:text-gray-400"
-                >name@flowbite.com</span
+                class="remark-cities block text-sm font-medium text-gray-500 truncate dark:text-gray-400"
+                >{{$store.state.email_user_login}}</span
               >
             </div>
             <ul class="py-1" aria-labelledby="menuProfile">
               <li>
                 <router-link to="/profile/index" @click="toggleProfileMenu()"><a
                   href="#"
-                  class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                  >Profile</a
+                  class="remark-cities flex py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                  >
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+                  </svg>
+                  Profile
+                  </a
                 ></router-link>
               </li>
-              <li>
+              <li @click="logout()">
                 <a
                   href="#"
-                  class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                  >Sign out</a
+                  class="remark-cities flex py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                  >
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                  </svg>
+                  Sign out
+                  </a
                 >
               </li>
             </ul>
@@ -180,7 +185,7 @@
             v-model="nameProduct"
             type="text"
             id="search"
-            class="block p-2 pl-10 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            class="remark-cities block p-2 pl-10 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-sm focus:ring-red-300 focus:border-red-300"
             placeholder="Search..."
           />
         </div>
@@ -193,12 +198,11 @@
           <ul
             class="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium"
           >
-            <li>
+            <li v-if="$store.state.id_user_login==0">
               <router-link
                 to="/connect"
-                class="block py-2 pr-4 whitespace-nowrap pl-3 text-white hover:text-slate-200"
-                >se connecter</router-link
-              >
+                class="remark-cities block py-2 pr-4 whitespace-nowrap pl-3 text-gray-700 hover:text-slate-200"
+                >se connecter</router-link>
             </li>
           </ul>
         </div>
@@ -218,6 +222,7 @@ export default {
       categoreis : [],
       categorie : '',
       nameProduct : '',
+      imgSrc : 'test.jpg',
     }
   },
   components: {},
@@ -241,9 +246,57 @@ export default {
       } catch (error) {
         console.log(error);
       }
+    },
+    logout(){
+      this.$store.commit('logout')
     }
+
+
+
+
+
   }
 };
 </script>
 
-<style></style>
+<style>
+
+
+/* From uiverse.io by @mrhyddenn */
+.totalPro {
+  position: relative;
+}
+
+.totalPro span {
+  position: absolute;
+  color: #fff;
+  transform: translate(-50%, -50%);
+  font-size: 22px;
+  letter-spacing: 5px;
+}
+
+.totalPro span:nth-child(1) {
+  color: transparent;
+  -webkit-text-stroke: 0.3px #EB5353;
+}
+
+.totalPro span:nth-child(2) {
+  color: #EB5353;
+  -webkit-text-stroke: 1px #EB5353;
+  animation: uiverse723 3s ease-in-out infinite;
+}
+
+@keyframes uiverse723 {
+  0%, 100% {
+    clip-path: polygon(0% 45%, 15% 44%, 32% 50%, 
+     54% 60%, 70% 61%, 84% 59%, 100% 52%, 100% 100%, 0% 100%);
+  }
+
+  50% {
+    clip-path: polygon(0% 60%, 16% 65%, 34% 66%, 
+     51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
+  }
+}
+
+
+</style>

@@ -8,9 +8,9 @@
                 <router-link to="/profile/commands"><div class="p-2 mt-2">
                    <p class="text-xs">Vos commandes</p>
                </div></router-link>
-                <router-link to="/profile/Envies"><div class="p-2 border border-r-0 border-t-0 border-b-0 border-l-red-500">
+                <!-- <router-link to="/profile/Envies"><div class="p-2 border border-r-0 border-t-0 border-b-0 border-l-red-500">
                    <p class="text-xs">Votre liste d'envies</p>
-               </div></router-link>
+               </div></router-link> -->
                 <router-link to="/profile/pass"><div class="border border-l-0 border-r-0 border-t-0 border-b-gray-300 p-2">
                    <p class="text-xs">Modifier votre mot de passe</p>
                </div></router-link>
