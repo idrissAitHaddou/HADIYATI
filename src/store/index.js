@@ -11,6 +11,7 @@ export default createStore({
     ville : '',
     adress : '',
     typePayment : '',
+    role : '',
     id_user_login : 0,
     email_user_login : '',
     token : '',
@@ -64,6 +65,12 @@ export default createStore({
         localStorage.setItem('typePayment' , this.state.typePayment)
       }
 
+      // inisialize role of user is login
+      if(localStorage.getItem('role')) {
+        this.state.role = localStorage.getItem('role')
+      }else {
+        localStorage.setItem('role' , this.state.role)
+      }
       // inisialize id of user is login
       if(localStorage.getItem('id_user_login')) {
         this.state.id_user_login = parseInt(localStorage.getItem('id_user_login'))
@@ -177,8 +184,10 @@ export default createStore({
 
     },
     logout(){
+      // destroy role user login
+        localStorage.setItem('role' , '')
       // destroy id user login
-      localStorage.setItem('id_user_login' , 0)
+        localStorage.setItem('id_user_login' , 0)
       // destroy email user login
         localStorage.setItem('email_user_login' , '')
       // destroy token

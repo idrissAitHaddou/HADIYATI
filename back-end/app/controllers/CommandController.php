@@ -46,9 +46,9 @@ class CommandController extends Controller
     public function destroy($id)
     {
         $products = Productscommand::where('id' , $id)->get();
-        // $command->delete();
+        $allproducts = Productscommand::all();
         foreach($products as  $product){
-            if(count($products)==1){
+            if(count($allproducts)==1){
                 $commands = Command::where('id' , $product['command_id'])->get();
                 foreach($commands as $command){
                     $command->destroy($command['id']);
@@ -57,7 +57,6 @@ class CommandController extends Controller
             $product->destroy($product['id']);
         }
         
-
         echo json_encode(['status' => 'deleted']);
     }
 

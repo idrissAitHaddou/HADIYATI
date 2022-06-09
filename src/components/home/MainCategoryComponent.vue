@@ -1,5 +1,5 @@
 <template>
-  <div class="flex w-4/5 mx-auto justify-around">
+  <div class="flex flex-col md:flex-row w-4/5 mx-auto justify-around">
       <button class="m-2">
           <a href="#" class="flex items-center p-3 pr-10 text-base font-bold text-gray-900 bg-gray-50 rounded-lg hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 rotate-45" viewBox="0 0 20 20" fill="green">

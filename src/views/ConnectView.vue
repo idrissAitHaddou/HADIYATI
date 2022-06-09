@@ -1,6 +1,6 @@
 <template>
-   <div class="flex item-center justify-between p-6">
-        <div class="w-1/2 p-6  flex flex-col item-center justify-between border border-t-0 border-l-0 border-b-0">
+   <div class="flex flex-col md:flex-row item-center justify-between p-6">
+        <div class="w-full md:w-1/2 p-6  flex flex-col item-center justify-between border border-t-0 border-l-0 border-b-0">
             <h3 class="text-center mb-8 title-cities">Se connecter</h3>
             <form @submit.prevent="login()" action="" class="w-full">
                 <div class="relative z-0 mb-6 w-full group">
@@ -15,8 +15,8 @@
                 <p>{{errorMessage}}</p>
             </form>
         </div>
-        <div class="w-1/2 p-6 flex flex-col item-center justify-between">
-              <h3 class="text-center title-cities">créer votre compte</h3>
+        <div class="w-full md:w-1/2 p-6 flex flex-col item-center justify-between">
+              <h3 class="text-center title-cities mb-8 md:mb-0">créer votre compte</h3>
               <p class="mb-14 text-sm text-gray-600 remark-cities">
                   Créez votre compte client Hadiyati en quelques  clics ! Vous
                   pouvez vous inscrire en utilisant votre adresse e-mail
@@ -56,9 +56,12 @@ export default {
                 const response = await  axios.post('http://localhost/hadiyati/login' , formdata)
                 const data = await JSON.parse(JSON.stringify(response.data))
                 if(data.message=='is login'){
+                    localStorage.setItem('role' , data.role)
                     localStorage.setItem('id_user_login' , data.id)
                     localStorage.setItem('email_user_login' , data.email)
                     localStorage.setItem('token' , data.jwt)
+                    console.log('-------------- data -----------')
+                    console.log(localStorage.getItem('role'))
                     window.location.href = 'http://localhost:8080'
                 }else{
                     this.$swal({

@@ -8,7 +8,7 @@
         </div>
         <div class="container border border-t-0 border-l-0 border-r-0 border-b-sky-100 px-5 py-3 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
            
-            <div class="flex-grow flex flex-wrap item-center justify-around md:pr-20 -mb-10 md:text-left text-center">
+            <div class="flex-grow md:flex flex-wrap item-center justify-around md:pr-20 -mb-10 md:text-left text-center">
                 
                     <div class="">
                         <h2 class="title title-font font-medium text-white tracking-widest text-sm mb-3">Comment ça marche</h2>
@@ -70,7 +70,7 @@
         </div>
         <div class="bg-footer">
             <div class="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
-            <p class="mini-title text-white text-xs text-center sm:text-left">Copyright © 2022. IGP.com. All rights reserved.</p>
+            <p class="mini-title text-whiQte text-xs text-center sm:text-left">Copyright © 2022. IGP.com. All rights reserved.</p>
             <div class="mini-title inline-flex text-xs text-white sm:ml-auto sm:mt-0 mt-2 justify-center item-center sm:justify-start">
                L'abus d'alcool est dangereux pour la santé. Consommer avec modération. 
                <img src="../../assets/images/visaFooter.svg" class="ml-3 mb-2" width="30" height="30" alt="" srcset="">

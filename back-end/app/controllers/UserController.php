@@ -51,7 +51,7 @@ class UserController extends Controller
 
                 // start login
 
-                $isLogin = User::where('email' , $user['email'])->first()->get();
+                $isLogin = User::where('email' , $user['email'])->get();
                 if($isLogin){
                     if(password_verify($user['password'] , $isLogin[0]['password'])){
                         $key = 'idriss ait haddou';
@@ -102,7 +102,7 @@ class UserController extends Controller
     public function login(HttpRequest $request)
     {
         $user = $_POST;
-        $isUser = User::where('email' , $user['email'])->first()->get();
+        $isUser = User::where('email' , $user['email'])->get();
         if($isUser){
             if(password_verify($user['password'] , $isUser[0]['password'])){
                 $key = 'idriss ait haddou';
@@ -113,6 +113,7 @@ class UserController extends Controller
                     'data' => [
                         'id' =>$isUser[0]['id'],
                         'email' => $isUser[0]['email'],
+                        'role' => $isUser[0]['role'],
                     ]
                 ];
                 $jwt = JWT::encode($payload, $key, 'HS256');
@@ -120,6 +121,7 @@ class UserController extends Controller
                 echo json_encode([
                     'status' => 0,
                     'jwt' => $jwt,
+                    'role' => $isUser[0]['role'],
                     'id' => $isUser[0]['id'],
                     'email' => $isUser[0]['email'],
                     'message' => 'is login',

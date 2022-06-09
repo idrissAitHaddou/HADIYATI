@@ -4,22 +4,22 @@
   >
     <!-- start menu of profile -->
     <div class="w-full md:w-48 bg-white h-36 mr-8 rounded-lg mb-4 md:mb-0">
-      <router-link to="/profile/index"
+      <router-link to="/"
         ><div
           class="border border-l-0 border-r-0 border-t-0 border-b-gray-300 p-2"
         >
           <p class="text-xs remark-cities">Votre compte Hadiyati</p>
         </div></router-link
       >
-      <router-link to="/profile/commands"
+      <router-link to="/ajouter-produit"
         ><div class="p-2 mt-2">
-          <p class="text-xs remark-cities">Vos commandes</p>
+          <p class="text-xs remark-cities">Ajouter Produit</p>
         </div></router-link
       >
       <!-- <router-link to="/profile/Envies"><div class="p-2">
                    <p class="text-xs">Votre liste d'envies</p>
                </div></router-link> -->
-      <router-link to="/profile/pass"
+      <router-link to="/admin-pass"
         ><div
           class="border border-r-0 border-t-0 border-l-red-500 border-b-gray-300 p-2"
         >
@@ -97,7 +97,7 @@
         <p>{{errorMessage}}</p>
       </div>
     </div>
-  </div>
+  </div><br>
 </template>
 <script>
 import axios from "axios";

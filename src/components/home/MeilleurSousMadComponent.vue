@@ -1,11 +1,11 @@
 <template>
     <div class="mt-14">
-        <h1 class="title-cities w-4/5 mx-auto text-4xl">Cadeaux de moins de 50 dirhams</h1>
-        <p class="remark-cities w-4/5 mx-auto">Si vous souhaitez des cadeaux, mais d'une forme qui n'est pas sur le site</p>
-        <div class="w-4/5 mx-auto my-4 grid grid-cols-4 gap-4">
-                <div v-for="product in products" :key="product" class="">
+        <h1 class="title-cities w-4/5 mx-auto md:text-4xl text-lg">Cadeaux de moins de 50 dirhams</h1>
+        <p class="remark-cities w-4/5 mx-auto md:text-sm text-xs">Si vous souhaitez des cadeaux, mais d'une forme qui n'est pas sur le site</p>
+        <div class="w-4/5 mx-auto my-4 grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div v-for="product in products" :key="product.id" class="">
 
-                        <div class="card" v-bind:style="addBackgroundLiner(product.background)">
+                        <div class="card mx-auto" v-bind:style="addBackgroundLiner(product.background)">
                                         <div class="card-img">
                                                 <a :href="setRouteCart(product.id)"><img
                                                     class="w-full h-full"

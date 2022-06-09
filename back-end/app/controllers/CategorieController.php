@@ -65,6 +65,28 @@ class CategorieController extends Controller
     }
 
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getCategoriesAndTypes()
+    {
+        $categories = Categorie::all();
+        $types = Groupe::all();
+        $colors = Color::all();
+        $modes = Mode::all();
+        $response = [];
+        $response['categories'] =  $categories;
+        $response['types'] = $types;
+        $response['colors'] = $colors;
+        $response['modes'] = $modes;
+        echo json_encode($response);
+    }
+    
+
+
+
 }
 
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-body-color">
+  <div v-if="$store.state.role!='admin'" class="bg-body-color">
     <CarouselComponent/>
     <MainCategoryComponent/>
     <!-- <BestCategoriesComponent/> -->
@@ -7,6 +7,9 @@
     <MeilleurSousMadComponent/>
     <SendWorldwideComponent/>
     <RecentlyViewedProductsComponent/>
+  </div>
+  <div v-if="$store.state.role=='admin'">
+      <AdminView/>
   </div>
 </template>
 
@@ -18,6 +21,7 @@ import SliderPlusVendus from '../components/home/SliderPlusVendus.vue'
 import MeilleurSousMadComponent from '../components/home/MeilleurSousMadComponent.vue'
 import SendWorldwideComponent from '../components/home/SendWorldwideComponent.vue'
 import RecentlyViewedProductsComponent from '../components/home/RecentlyViewedProductsComponent.vue'
+import AdminView from './AdminView.vue'
 
 
 export default {
@@ -29,7 +33,8 @@ export default {
     SliderPlusVendus,
     MeilleurSousMadComponent,
     SendWorldwideComponent,
-    RecentlyViewedProductsComponent
+    RecentlyViewedProductsComponent,
+    AdminView,
   }
 }
 </script>

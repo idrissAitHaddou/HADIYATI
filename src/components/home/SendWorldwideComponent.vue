@@ -2,10 +2,10 @@
 
 
     <div class="mt-14">
-        <h1 class="title-cities w-4/5 mx-auto text-4xl">Où sommes-nous?</h1>
-        <p class="remark-cities w-4/5 mx-auto">Si vous souhaitez des cadeaux, mais d'une forme qui n'est pas sur le site</p>
-        <div class="w-4/5 mx-auto my-4 grid grid-cols-4 gap-4">
-                <div v-for="city in cities" :key="city" class="">
+        <h1 class="title-cities w-4/5 mx-auto md:text-4xl text-lg">Où sommes-nous?</h1>
+        <p class="remark-cities w-4/5 mx-auto md:text-sm text-xs">Si vous souhaitez des cadeaux, mais d'une forme qui n'est pas sur le site</p>
+        <div class="w-4/5 mx-auto my-4 grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div v-for="city in cities" :key="city" class="mx-auto">
                     <a href="#">
                         <img class="rounded-t-lg"  :src="require('../../assets/images/cities/'+city.image)" alt="" />
                     </a>

@@ -4,24 +4,19 @@
   >
     <!-- start menu of profile -->
     <div class="w-full md:w-48 bg-white h-36 mr-8 rounded-lg mb-4 md:mb-0">
-      <router-link to="/profile/index"
+      <router-link to="/"
         ><div
           class="border border-l-red-500 border-r-0 border-t-0 border-b-gray-300 p-2"
         >
           <p class="text-xs remark-cities">Votre compte Hadiyati</p>
         </div></router-link
       >
-      <router-link to="/profile/commands"
+      <router-link to="/ajouter-produit"
         ><div class="p-2 mt-2">
-          <p class="text-xs remark-cities">Vos commandes</p>
+          <p class="text-xs remark-cities">Ajouter Produit</p>
         </div></router-link
       >
-      <!-- <router-link to="/profile/Envies"
-        ><div class="p-2">
-          <p class="text-xs">Votre liste d'envies</p>
-        </div></router-link
-      > -->
-      <router-link to="/profile/pass"
+      <router-link to="/admin-pass"
         ><div
           class="border border-l-0 border-r-0 border-t-0 border-b-gray-300 p-2"
         >
@@ -133,44 +128,6 @@
         </div>
       </div>
 
-      <div class="grid grid-cols-1 gap-14 px-8">
-        <div class="relative z-0 mb-6 w-full group">
-          <input
-          @keyup="changeBorder(adress , 'adress')"
-          v-model="adress"
-            type="text"
-            name="adress"
-            id="adress"
-            class="remark-cities block py-2.5 px-0 w-full text-xs text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-            placeholder=" "
-          />
-          <label
-            for="floating_first_name"
-            class="remark-cities absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-            >Adress</label>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-2 gap-14 px-8 mt-6">
-        <div class="relative z-0 mb-6 w-full group">
-          <select
-          @change="changeBorder(ville , 'ville')"
-            v-model="ville"
-            id="ville"
-            class="remark-cities py-2.5 focus:border-transparent text-xs focus:ring-0 bg-gray-50 w-full p-1 border border-gray-100 rounded-lg"
-          >
-               <option value="" disabled selected>select ville</option>
-               <option value="">Aucun</option>
-                <template v-for="(city,index) in cities" :key="index">
-                        <option v-if="city==ville" selected :value="city">{{city}}</option> 
-                        <option v-else-if="city!=ville" :value="city">{{city}}</option>                       
-                </template>
-          </select>
-        </div>
-        <div class="relative z-0 mb-6 w-full group">
-        </div>
-      </div>
-
       <div class="grid grid-cols-1 gap-14 p-3">
         <div class="relative z-0 mb-6 w-full group">
           <button @click="updateUser()" class="remark-cities hover:text-gray-900 w-full p-3 rounded-lg text-gray-600 bg-white border border-orange-300 hover:font-bold mt-4">
@@ -179,7 +136,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div><br>
 </template>
 <script>
 import axios from "axios";

@@ -2,7 +2,9 @@
 
   <div class="bg-body-color">
     <NavbarComponent />
-    <Footer/>
+    <template v-if="$store.state.role!='admin'">
+        <Footer />
+    </template>
   </div>
   
 </template>

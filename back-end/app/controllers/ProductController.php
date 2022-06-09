@@ -40,10 +40,13 @@ class ProductController extends Controller
      */
     public function getRichProducts()
     {
-        $products = Product::orderBy('price' , 'DESC')->take(8)->get();
-        foreach($products as $product){
-            $images = Image::where('id_produit' , '=' , $product->id)->get();
-            $product['images'] = $images;
+        $products = [];
+        $productsCommand = Productscommand::orderBy('quantity' , 'DESC')->take(8)->get();
+        foreach($productsCommand as $productC){
+            $pro = Product::where('id' , $productC->id_product)->get();
+            $images = Image::where('id_produit' , '=' , $productC->id_product)->get();
+            $pro['images'] = $images; 
+            $products[] = $pro;
         }
         echo json_encode($products);
     }
@@ -110,15 +113,15 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function addCommand(HttpRequest $request){
-       $command = $_POST;
-       $myCommand = Command::create([
+        $command = $_POST;
+        Command::create([
             "id_user" => $command['id_user_login'],
             "total" => $command['tottalPrice'],
             "tel" => $command['tel'],
             "adress" => $command['adress'],
             "ville" => $command['ville'],
         ]);
-        $myCommand->save();
+     
         
         echo json_encode(['status' => 'success']);
     }
@@ -143,6 +146,31 @@ class ProductController extends Controller
      }
 
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function addProduct(HttpRequest $request){
+        $product = $_POST;
+        Product::create([
+            "name" => $product['name'],
+            "price" => $product['price'],
+            "id_color" => $product['color'],
+            "background" => $product['background'],
+            "descritpion" => $product['description'],
+            "id_categorie" => $product['categorie'],
+            "id_group" => $product['type'],
+            "id_country_mode" => $product['mode'],
+        ]);
+        $productId = Product::orderBy('id' , 'DESC')->first();
+        Image::create([
+            "id_produit" => $productId['id'],
+            "src" => $product['image'],
+        ]);
+
+        echo json_encode(['message' => 'updated']);
+     }
 
 }
 

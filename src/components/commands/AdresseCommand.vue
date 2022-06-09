@@ -1,6 +1,6 @@
 <template>
 
-    <div class="w-11/12 mx-auto flex item-center justify-between py-3">
+    <div class="w-11/12 mx-auto flex md:flex-row flex-col item-center justify-between py-3">
         <span class="remark-cities text-gray-500">
             FINALISATION DE LA COMMANDE
         </span>
@@ -9,9 +9,9 @@
         </span>
     </div>
                 
-    <div class="w-11/12 flex flex-col item-center bg-white border rounded-lg mt-2 h-96 mx-auto">
-        <div class="flex item-center justify-between border border-l-0 border-r-0 border-t-0 border-b-gray-300 w-full h-10 p-2">
-            <div class="flex item-center pt-1">
+    <div class="w-11/12 flex flex-col item-center bg-white border rounded-lg mt-2 h-auto md:h-96 mx-auto">
+        <div class="flex item-center justify-between border border-l-0 border-r-0 border-t-0 border-b-gray-300 w-full md:h-10 h-auto p-2">
+            <div class="flex md:flex-row flex-col item-center pt-1">
                 <p class="flex mr-5 text-xs">
                     <svg class="h-3 mt-0.5 mr-1" xmlns="http://www.w3.org/2000/svg" fill="" viewBox="0 0 512 512"><path d="M0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256zM371.8 211.8C382.7 200.9 382.7 183.1 371.8 172.2C360.9 161.3 343.1 161.3 332.2 172.2L224 280.4L179.8 236.2C168.9 225.3 151.1 225.3 140.2 236.2C129.3 247.1 129.3 264.9 140.2 275.8L204.2 339.8C215.1 350.7 232.9 350.7 243.8 339.8L371.8 211.8z"/></svg>
                     <span class="remark-cities">ADRESSE</span>
@@ -27,7 +27,7 @@
 
             </div>
             <div class="flex item-center">
-                <button @click="addAdressInfoToCart()" class="remark-cities cssbuttons-io-button -mt-1"> Suivant
+                <button @click="addAdressInfoToCart()" class="remark-cities cssbuttons-io-button md:-mt-1 mt-2"> Suivant
                     <div class="icon">
                         <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"></path><path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z" fill="currentColor"></path></svg>
                     </div>
@@ -36,14 +36,14 @@
             </div>
         </div>
         <div class="flex item-center justify-between p-4">
-            <div class="w-1/2 ">
-                <form class="w-9/12 mx-auto mt-4">
-                    <div class="mb-6">
+            <div class="md:w-1/2 w-full">
+                <form class="md:w-9/12 w-full mx-auto mt-4">
+                    <div class="mb-6 w-11/12 md-full mx-auto">
                         <label for="email" class="remark-cities block mb-2 text-xs font-medium text-gray-900 dark:text-gray-300">Numéro de téléphone mobile *</label>
                         <input @keyup="changeBorder(tel , 'tel')" v-model="tel" type="text" id="tel" class="remark-cities focus:border-transparent focus:ring-0 bg-gray-50 w-full p-2.5 border rounded-lg" placeholder="" required>
                     </div>
                   
-                    <div class="mb-6">
+                    <div class="mb-6 w-11/12 md-full mx-auto">
                         <label for="password" class="remark-cities block mb-2 text-xs font-medium text-gray-900 dark:text-gray-300">Ville *</label>
                         <select @change="changeBorder(ville , 'cities')" v-model="ville" id="cities" class="remark-cities focus:border-transparent focus:ring-0 bg-gray-50 w-full p-2.5 border rounded-lg">
                            <option value="" disabled>select la ville</option>
@@ -52,13 +52,13 @@
                             </template>
                         </select>                     
                     </div>
-                     <div class="mb-6">
+                     <div class="mb-6 w-11/12 md-full mx-auto">
                         <label for="email" class="remark-cities block mb-2 text-xs font-medium text-gray-900 dark:text-gray-300">Adresse *</label>
                         <textarea @keyup="changeBorder(adress , 'adress')" v-model="adress" id="adress" rows="2" class="remark-cities focus:border-transparent focus:ring-0 bg-gray-50 w-full p-2.5 border rounded-lg" placeholder="Rue / Appartement / Suite / Bloc / Bâtiment" required></textarea>
                     </div>
                 </form>
             </div>
-            <div class="w-1/2">
+            <div class="w-1/2 md:block hidden">
                 <div class="w-9/12 mx-auto">
                         <img src="../../assets/images/payment.png" alt="" />
                 </div>

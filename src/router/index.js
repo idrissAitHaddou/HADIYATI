@@ -13,12 +13,14 @@ import ProfileView from '../views/ProfileView.vue'
 import ProfileCommandes from '../components/profile/ProfileCommandes.vue'
 import ProfileEnvies from '../components/profile/ProfileEnvies.vue'
 import UpdatePassword from '../components/profile/UpdatePassword.vue'
+import AjouterProduit from '../components/profile/AjouterProduit.vue'
+import AdminPassword from '../components/profile/AdminPassword.vue'
 
 const routes = [
   {
-    path: '/',
-    name: 'home',
-    component: HomeView
+      path: '/',
+      name: 'home',
+      component: HomeView
   },
   {
     path: '/search',
@@ -84,6 +86,16 @@ const routes = [
     path: '/profile/pass',
     name: 'updatePassword',
     component: UpdatePassword
+  },
+  {
+    path: '/ajouter-produit',
+    name: 'ajouterProduit',
+    component: AjouterProduit
+  },
+  {
+    path: '/admin-pass',
+    name: 'adminPassword',
+    component: AdminPassword
   }
 ]
 

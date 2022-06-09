@@ -16,6 +16,8 @@ Route::post('/add-command', 'App\controllers\ProductController@addCommand');
 Route::post('/add-product-command', 'App\controllers\ProductController@addProductCommand');
 Route::get('/command-products/{id}', 'App\controllers\CommandController@getProductCommand');
 Route::get('/destroy-command/{id}', 'App\controllers\CommandController@destroy');
+Route::get('/categories-types', 'App\controllers\CategorieController@getCategoriesAndTypes');
+Route::post('/add-produit', 'App\controllers\ProductController@addProduct');
 
 // ** Les villes
 Route::get('/cities', 'App\controllers\ProductController@getCities');

@@ -50,11 +50,12 @@
            
           </router-link>
         <div class="flex items-center md:order-2 sm:order-2">
-              <div class="totalPro mr-4">
+          
+              <div v-if="$store.state.role!='admin'" class="totalPro mr-4">
                   <span>{{$store.state.totalLength}}</span>
                   <span>{{$store.state.totalLength}}</span>
               </div>
-                <router-link to="/panier">
+                <router-link to="/panier" v-if="$store.state.role!='admin'">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                   </svg>
@@ -160,7 +161,14 @@
           class="md:w-1/3 sm:mt-0 mt-2 sm:w-1/3 w-screen relative mr-3 md:order-1 md:mr-24 md:block"
         >
           <div
+            class=""
+            v-if="$store.state.role=='admin'"
+          >
+            <h1 class="title-cities h-10 text-center md:text-right py-2">Administrateur</h1>
+          </div>
+          <div
             class="flex absolute inset-y-0 right-0 items-center pr-3 cursor-pointer"
+            v-if="$store.state.role!='admin'"
           >
            
               <router-link
@@ -182,6 +190,7 @@
             
           </div>
           <input
+            v-if="$store.state.role!='admin'"
             v-model="nameProduct"
             type="text"
             id="search"

@@ -1,33 +1,33 @@
 <template>
 
-    <div v-bind:style="addBorderColor(product[0].background)" class="w-11/12 flex item-center justify-between bg-white border rounded-lg mt-4 h-80 py-3 mx-auto">
-       <div class="flex flex-col item-center justify-center w-20">
+    <div v-bind:style="addBorderColor(product[0].background)" class="md:w-11/12 flex md:flex-row flex-col item-center justify-between bg-white border rounded-lg mt-4 md:h-80 py-3 mx-auto">
+       <div class="w-full flex md:flex-col item-center justify-center md:w-20">
                <img
                    v-for="(image , index) in product['images']" :key="index"
-                    class="mx-auto border w-14 h-14 mt-3 cursor-pointer"
+                    class="md:mx-auto mr-1 md:mr-0 border w-14 h-14 md:mt-3 mb-2 md:mb-0 cursor-pointer"
                     :src="require('../assets/images/products/'+image.src)"
                     alt=""
                    @click="changeImgPro(index)"
                 >
        </div>
-       <div class=" w-11/12">
-        <div class="flex flex w-full h-full items-center bg-white rounded-lg">
+       <div class="md:w-11/12 w-full">
+        <div class="flex md:flex-row px-2 md:px-0 flex-col w-full h-full items-center bg-white rounded-lg">
             
-           <div class="w-1/2 h-full border" v-bind:style="addBackgroundLiner(product[0].background)">
+           <div class="md:w-1/2 w-full h-full border" v-bind:style="addBackgroundLiner(product[0].background)">
                 <img 
                     class="object-cover h-48 w-48 mx-auto mt-8 rounded-lg" 
                     :src="require('../assets/images/products/'+srcImage)"
                     alt=""
                 >
            </div>
-            <div class="flex flex-col w-1/2 justify-between p-4 leading-normal">
+            <div class="flex flex-col md:w-1/2 w-full justify-between p-4 leading-normal">
                 <div class="flex justify-between">
-                    <h4 class="remark-cities mb-2 text-sm font-bold tracking-tight text-gray-900 dark:text-white">{{product[0].name}}</h4>
+                    <h4 class="remark-cities mb-2 text-xs md:text-sm font-bold tracking-tight text-gray-900 dark:text-white">{{product[0].name}}</h4>
                     <div>
                         <img class="" src="../assets/images/heartVide.svg" alt="">
                     </div>
                 </div>
-                <div class="mb-3 text-xs flex justify-between font-normal border border-t-0 border-r-0 border-l-0 border-gray-200 p-2 text-gray-700 dark:text-gray-400">
+                <div class="mb-3 text-xs flex justify-between font-normal border border-t-0 border-r-0 border-l-0 border-gray-200 py-2 text-gray-700 dark:text-gray-400">
                     <div class="flex">
                         <img 
                         src="../assets/images/likeHeart.svg"
@@ -37,14 +37,14 @@
                     </div>
                 </div>
                 <div>
-                    <p class="remark-cities text-sm">
+                    <p class="remark-cities text-xs mdtext-sm">
                         {{product[0].descritpion}}
                     </p>
                     <p class="mt-3">
                         <span class="remark-cities mr-4"> {{product[0].price * quantity}} Dh</span>
                         <span v-if="product[0].old_price!=0" class="text-gray-400 line-through"> {{product[0].old_price}} Dhs</span>
                     </p>
-                    <p class="remark-cities mt-4">
+                    <p class="remark-cities mt-4 text-xs md:text-sm">
                         Marque: {{product['mode'][0].name}}
                     </p>
                     <div class="flex item-center justify-start mt-3">
@@ -53,7 +53,7 @@
                         <span class="mt-3 w-6 h-6 text-sm text-red-600 text-center font-bold">{{quantity}}</span>
                         <button v-bind:style="addBackgroundLiner(product[0].background)" @click="addCount()" class="mt-3 w-6 h-6 bg-red-600 text-sm text-gray-600 font-bold flex item-center justify-center">+</button>
                     </div>
-                    <button  v-bind:style="addBackgroundLiner(product[0].background)" @click="addToCart(product[0].price)" class="remark-cities w-48 mt-4 p-2 text-md font-bold whitespace-nowrap rounded-lg text-gray-500">Ajouter</button> 
+                    <button  v-bind:style="addBackgroundLiner(product[0].background)" @click="addToCart(product[0].price)" class="remark-cities w-28 md:w-48 mt-4 p-2 text-xs md:text-md font-bold whitespace-nowrap rounded-lg text-gray-500">Ajouter</button> 
                     <div v-if="messageToAddCart=='loading'" class="line-wobble w-48">
 
                     </div>
