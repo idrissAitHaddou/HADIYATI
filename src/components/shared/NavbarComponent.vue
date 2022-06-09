@@ -35,18 +35,18 @@
         </div>
         
         <router-link to="/">
-              <img
+              <!-- <img
                 src="../../assets/images/logo.svg"
                 class="mr-3 h-6 xl:ml-0 ml-6"
                 style="transform: scale(2.3)"
                 alt="Flowbite Logo"
-              /> 
-              <!-- <img
-                :src="require('http://localhost/hadiyati/public/images/'+imgSrc)"
+              />  -->
+              <img
+                :src="getImage()"
                 class="mr-3 h-6 xl:ml-0 ml-6"
                 style="transform: scale(2.3)"
                 alt="Flowbite Logo"
-              /> -->
+              />
            
           </router-link>
         <div class="flex items-center md:order-2 sm:order-2">
@@ -239,6 +239,9 @@ export default {
       this.getCategoreis()
   },
   methods : {
+    getImage(){
+      return 'http://localhost/hadiyati/public/images/'+this.imgSrc
+    },
     toggleProfileMenu(){
       const men = document.getElementById('menuProfile');
       men.classList.toggle('hidden');
