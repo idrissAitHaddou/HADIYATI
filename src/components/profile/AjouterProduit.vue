@@ -122,9 +122,10 @@
     <div class="grid grid-cols-1 gap-3 md:gap-14 px-8 mt-2">
           <div class="relative z-0 my-6 w-full group">
             <input
-            @change="changeBorder(image , 'image') ; changeImage()"
+             @input="changeImage($event.target.files)"
               type="file"
               name="image"
+              accept="image/*"
               id="image"
               class="remark-cities block mb-3 py-1 px-0 w-full text-xs text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=""
@@ -135,6 +136,14 @@
               for="floating_first_name"
               class="remark-cities absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
               >Image</label>
+        </div>
+        <div class="w-full p-2 grid grid-cols-4">
+          <template v-if="image.length>0">
+            <div class="border p-2 mx-1 relative" v-for="(img , index) in image" :key="index">
+              <img width="40" height="40" :src="require('../../assets/images/products/'+img)" alt="">
+              <span @click="deleteImg(index)" class="absolute -top-1 right-1 cursor-pointer">X</span>
+            </div>
+          </template> 
         </div>
     </div>
 
@@ -194,7 +203,7 @@
       <div class="grid grid-cols-1 gap-14 p-3">
         <div class="relative z-0 mb-6 w-full group">
           <button @click="ajouterProduit()" class="remark-cities hover:text-gray-900 w-full p-3 rounded-lg text-gray-600 bg-white border border-orange-300 hover:font-bold mt-4">
-            Update
+            Ajouter
           </button>
         </div>
       </div>
@@ -208,7 +217,7 @@ export default {
     return {
       name : '',
       price : '',
-      image : '',
+      image : [],
       color : '',
       background : '',
       description : '',
@@ -225,6 +234,9 @@ export default {
     this.getCategoriesAndTypes();
   },
   methods: {
+    deleteImg(index){
+        this.image = this.image.filter((e)=> e!=this.image[index])
+    },
       changeBorder(value , id){
             const input = document.getElementById(id)
             if(value!=''){
@@ -245,10 +257,11 @@ export default {
                 this.mode=value
             }
     },
-    changeImage(){
-            let img = document.getElementById('image').value
-            let   name = img.split("\\")
-            this.image = name[2]
+    changeImage(img){
+            for(let i=0 ; i<img.length ; i++){
+              this.image.push(img[i].name)
+              console.log(this.image)
+            }
     },
     logout(){
       this.$store.commit('logout')
@@ -256,16 +269,8 @@ export default {
     async ajouterProduit(){
 
         console.log('---------- prdocts info ------------')
-        console.log(this.name)
-        console.log(this.price)
-        console.log(this.color)
-        console.log(this.background)
-        console.log(this.description)
-        console.log(this.categorie)
-        console.log(this.type)
-        console.log(this.image)
 
-        if(this.name!='' && this.price!='' && this.color!='' && this.background!='' && this.description!='' && this.categorie!='' && this.type!='' && this.image!=''){
+        if(this.name!='' && this.price!='' && this.color!='' && this.background!='' && this.description!='' && this.categorie!='' && this.type!='' && this.image.length>0){
                 let formdata = new FormData()
                     formdata.append('name' , this.name)
                     formdata.append('price' , this.price)
@@ -279,6 +284,7 @@ export default {
                     formdata.append('mode' , this.color)
                 const response = await  axios.post('http://localhost/hadiyati/add-produit' , formdata)
                 const data = await JSON.parse(JSON.stringify(response.data))
+                console.log(this.image)
                 console.log(data)
                 if(data.message!='updated'){
                         this.$swal({

@@ -18,6 +18,8 @@ Route::get('/command-products/{id}', 'App\controllers\CommandController@getProdu
 Route::get('/destroy-command/{id}', 'App\controllers\CommandController@destroy');
 Route::get('/categories-types', 'App\controllers\CategorieController@getCategoriesAndTypes');
 Route::post('/add-produit', 'App\controllers\ProductController@addProduct');
+Route::post('/like-product', 'App\controllers\ProductController@checkLikeProduct');
+Route::get('/get-like-product/{id}', 'App\controllers\ProductController@getLikeProduct');
 
 // ** Les villes
 Route::get('/cities', 'App\controllers\ProductController@getCities');

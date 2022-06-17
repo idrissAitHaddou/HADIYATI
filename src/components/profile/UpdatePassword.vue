@@ -27,7 +27,7 @@
         </div></router-link
       >
       <div class="mt-1 p-2">
-        <p class="text-xs text-center text-red-500 cursor-pointer remark-cities">
+        <p @click="logout()" class="text-xs text-center text-red-500 cursor-pointer remark-cities">
           déconnexion
         </p>
       </div>
@@ -111,6 +111,9 @@ export default {
       }
   },
   methods : {
+      logout(){
+        this.$store.commit('logout')
+      },
       changeBorder(value , id){
             const input = document.getElementById(id)
             if(value==''){

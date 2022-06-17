@@ -24,7 +24,11 @@
                 <div class="flex justify-between">
                     <h4 class="remark-cities mb-2 text-xs md:text-sm font-bold tracking-tight text-gray-900 dark:text-white">{{product[0].name}}</h4>
                     <div>
-                        <img class="" src="../assets/images/heartVide.svg" alt="">
+                        <span class="flex relative">
+                                <img v-if="iskLike" @click="checkLike($route.params.id)" class="cursor-pointer" src="../assets/images/hearFull.svg" alt="">
+                                <img v-else-if="!iskLike" @click="checkLike($route.params.id)" class="cursor-pointer" src="../assets/images/heartVide.svg" alt="">
+                                <span class="absolute -top-3 -right-1 bg-red-500 rounded-full text-white w-4 h-4 text-xs text-center">{{numberLikes}}</span>
+                        </span>
                     </div>
                 </div>
                 <div class="mb-3 text-xs flex justify-between font-normal border border-t-0 border-r-0 border-l-0 border-gray-200 py-2 text-gray-700 dark:text-gray-400">
@@ -33,7 +37,7 @@
                         src="../assets/images/likeHeart.svg"
                          alt=""
                          >
-                        <span class="remark-cities">({{product[0].num_love}}) favourises</span>  
+                        <span class="remark-cities">({{numberLikes}}) favourises</span>  
                     </div>
                 </div>
                 <div>
@@ -45,7 +49,7 @@
                         <span v-if="product[0].old_price!=0" class="text-gray-400 line-through"> {{product[0].old_price}} Dhs</span>
                     </p>
                     <p class="remark-cities mt-4 text-xs md:text-sm">
-                        Marque: {{product['mode'][0].name}}
+                        Marque: {{product['mode'][0]}}
                     </p>
                     <div class="flex item-center justify-start mt-3">
                         <button v-if="quantity==1" @click="addLess()" class="mt-3 w-6 h-6 bg-orange-200 text-sm text-gray-600 font-bold flex item-center justify-center">-</button>
@@ -76,12 +80,50 @@ export default {
            quantity : 1,
            messageToAddCart : '',
            srcImage : '',
+           iskLike : false,
+           numberLikes : 0,
        }
     },
     created () {
        this.getProduct()
     },
     methods : {
+      async getLikeProduct(){
+            const response = await  axios.get('http://localhost/hadiyati/get-like-product/'+this.$route.params.id)
+            const data = await JSON.parse(JSON.stringify(response.data))
+            if(data.message){
+                this.numberLikes = data.numberLikes
+                this.iskLike = true
+            }
+       },
+       async checkLike(id_produit){
+            if(this.$store.state.id_user_login==0){
+                this.$swal({
+                    icon: 'error',
+                    title: 'Invalid...',
+                    text: 'connecter pour like ce produit',
+                })
+            }else{
+                    let formdata = new FormData()
+                        formdata.append('id_produit' , id_produit)
+                        formdata.append('id_user' , this.$store.state.id_user_login)
+                    const response = await  axios.post('http://localhost/hadiyati/like-product' , formdata)
+                    const data = await JSON.parse(JSON.stringify(response.data))
+                    if(data.message=="add"){
+                        this.iskLike = true
+                        this.numberLikes = this.numberLikes + 1
+                    }else if(data.message=="delete"){
+                        this.iskLike = false
+                        this.numberLikes = this.numberLikes - 1
+                    }else if(data.message=="error"){
+                        this.$swal({
+                            icon: 'error',
+                            title: 'Invalid...',
+                            text: 'votre like ou dsilike pas ajouter',
+                        })
+                    }
+            }
+        },
         changeImgPro(index){
           this.srcImage = this.product['images'][index].src
         },
@@ -95,9 +137,13 @@ export default {
             axios.get('http://localhost/hadiyati/get-product/'+this.$route.params.id).then((response) => {
                 this.product = response.data
                 this.srcImage = this.product['images'][0].src
+                console.log('is product')
+                console.log(this.product)
             }).catch((error) => {
                 console.log(error);
             })
+
+            this.getLikeProduct()
             
             // console.log('------------ :::::::::::::::: '+this.$store.state.tottalPrice)
         },

@@ -35,19 +35,12 @@
         </div>
         
         <router-link to="/">
-              <!-- <img
+              <img
                 src="../../assets/images/logo.svg"
                 class="mr-3 h-6 xl:ml-0 ml-6"
                 style="transform: scale(2.3)"
                 alt="Flowbite Logo"
-              />  -->
-              <img
-                :src="getImage()"
-                class="mr-3 h-6 xl:ml-0 ml-6"
-                style="transform: scale(2.3)"
-                alt="Flowbite Logo"
-              />
-           
+              /> 
           </router-link>
         <div class="flex items-center md:order-2 sm:order-2">
           
@@ -114,7 +107,7 @@
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                   </svg>
-                  Sign out
+                  Déconnexion
                   </a
                 >
               </li>
@@ -195,7 +188,7 @@
             type="text"
             id="search"
             class="remark-cities block p-2 pl-10 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-sm focus:ring-red-300 focus:border-red-300"
-            placeholder="Search..."
+            placeholder="recherche..."
           />
         </div>
 

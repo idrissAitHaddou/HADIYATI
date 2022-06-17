@@ -9,6 +9,7 @@ use App\Models\Image;
 use App\Models\Mode;
 use App\Models\Command;
 use App\Models\Productscommand;
+use App\Models\Like;
 use Controller;
 
 class ProductController extends Controller
@@ -46,6 +47,8 @@ class ProductController extends Controller
             $pro = Product::where('id' , $productC->id_product)->get();
             $images = Image::where('id_produit' , '=' , $productC->id_product)->get();
             $pro['images'] = $images; 
+            $checkLike = Like::where('id_produit' , $productC->id_product)->get();
+            $pro['numberLikes'] = count($checkLike); 
             $products[] = $pro;
         }
         echo json_encode($products);
@@ -62,6 +65,8 @@ class ProductController extends Controller
         foreach($products as $product){
             $images = Image::where('id_produit' , '=' , $product->id)->get();
             $product['images'] = $images;
+            $checkLike = Like::where('id_produit' , $product->id)->get();
+            $product['numberLikes'] = count($checkLike); 
         }
         echo json_encode($products);
     }
@@ -86,6 +91,8 @@ class ProductController extends Controller
         foreach($products as $product){
             $images = Image::where('id_produit' , '=' , $product->id)->get();
             $product['images'] = $images;
+            $checkLike = Like::where('id_produit' , $product->id)->get();
+            $product['numberLikes'] = count($checkLike); 
         }
         echo json_encode($products);
     }
@@ -153,6 +160,7 @@ class ProductController extends Controller
      */
     public function addProduct(HttpRequest $request){
         $product = $_POST;
+        $images = explode(',' , $product['image']);
         Product::create([
             "name" => $product['name'],
             "price" => $product['price'],
@@ -164,12 +172,60 @@ class ProductController extends Controller
             "id_country_mode" => $product['mode'],
         ]);
         $productId = Product::orderBy('id' , 'DESC')->first();
-        Image::create([
-            "id_produit" => $productId['id'],
-            "src" => $product['image'],
-        ]);
+
+        for($i=0 ; $i<count($images) ; $i++){
+            Image::create([
+                "id_produit" => $productId['id'],
+                "src" => $images[$i],
+            ]);
+        }
 
         echo json_encode(['message' => 'updated']);
+     }
+
+
+     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function checkLikeProduct(HttpRequest $request){
+        $params = $_POST;
+        $isLike = Like::where('id_produit' , $params['id_produit'])->where('id_user' , $params['id_user'])->first();
+        if(!$isLike){
+            Like::create([
+                "id_produit" => $params['id_produit'],
+                "id_user" => $params['id_user'],
+            ]);
+    
+            echo json_encode(['message' => 'add']);
+            die();
+        }else{
+            $isLike->destroy($isLike->id);
+            echo json_encode(['message' => 'delete']);
+            die();
+        }
+        echo json_encode(['message' => 'error']);
+
+     }
+
+
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getLikeProduct($id){
+        $checkLike = Like::where('id_produit' , $id)->get();
+        if(count($checkLike)>0){
+            echo json_encode(['message' => true , 'numberLikes' => count($checkLike)]);
+            die();
+        }else{
+            echo json_encode(['message' => false , 'numberLikes' => 0]);
+            die();
+        }
+
      }
 
 }

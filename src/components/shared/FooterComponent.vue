@@ -14,13 +14,13 @@
                         <h2 class="title title-font font-medium text-white tracking-widest text-sm mb-3">Comment ça marche</h2>
                         <nav class="list-none mb-10">
                         <li>
-                            <a class="mini-title text-white text-xs cursor-pointer hover:text-gray-800">Choiser les produites</a>
+                            <a class="mini-title text-white text-xs cursor-pointer hover:text-gray-800">Choisi les produits</a>
                         </li>
                         <li>
-                            <a class="mini-title text-white text-xs cursor-pointer hover:text-gray-800">Choiser le carde</a>
+                            <a class="mini-title text-white text-xs cursor-pointer hover:text-gray-800">Choiser un couverteur</a>
                         </li>
                         <li>
-                            <a class="mini-title text-white text-xs cursor-pointer hover:text-gray-800">Choiser le boîte</a>
+                            <a class="mini-title text-white text-xs cursor-pointer hover:text-gray-800">Choiser une boîte</a>
                         </li>
                         <li>
                             <a class="mini-title text-white text-xs cursor-pointer hover:text-gray-800">Enregistrer commande</a>
@@ -61,16 +61,24 @@
                     <div class="">
                         <h2 class="title title-font font-medium text-white tracking-widest text-sm mb-3">Suivez-nous !</h2>
                             <nav class="list-none mb-10 flex">
-                            <li>
-                                
-                            </li>
+                                <ul class="flex">
+                                    <li class="pl-2">
+                                        <img width="20" height="20" src="../../assets/images/facebookFooter.svg" alt="">
+                                    </li>
+                                    <li class="pl-2">
+                                        <img width="20" height="20" src="../../assets/images/linkdenFooter.svg" alt="">
+                                    </li>
+                                    <li class="pl-2">
+                                        <img width="20" height="20" src="../../assets/images/youtubeFooter.svg" alt="">
+                                    </li>
+                                </ul>
                         </nav>
                     </div>
             </div>
         </div>
         <div class="bg-footer">
             <div class="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
-            <p class="mini-title text-whiQte text-xs text-center sm:text-left">Copyright © 2022. IGP.com. All rights reserved.</p>
+            <p class="mini-title text-white text-xs text-center sm:text-left">Copyright © 2022. IGP.com. All rights reserved.</p>
             <div class="mini-title inline-flex text-xs text-white sm:ml-auto sm:mt-0 mt-2 justify-center item-center sm:justify-start">
                L'abus d'alcool est dangereux pour la santé. Consommer avec modération. 
                <img src="../../assets/images/visaFooter.svg" class="ml-3 mb-2" width="30" height="30" alt="" srcset="">

@@ -174,7 +174,7 @@
       <div class="grid grid-cols-1 gap-14 p-3">
         <div class="relative z-0 mb-6 w-full group">
           <button @click="updateUser()" class="remark-cities hover:text-gray-900 w-full p-3 rounded-lg text-gray-600 bg-white border border-orange-300 hover:font-bold mt-4">
-            Update
+            enregistrer
           </button>
         </div>
       </div>

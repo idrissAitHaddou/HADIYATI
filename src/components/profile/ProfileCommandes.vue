@@ -15,7 +15,7 @@
                    <p class="text-xs remark-cities">Modifier votre mot de passe</p>
                </div></router-link>
                 <div class="mt-1 p-2">
-                   <p class="text-xs text-center text-red-500 cursor-pointer remark-cities">déconnexion</p>
+                   <p @click="logout()" class="text-xs text-center text-red-500 cursor-pointer remark-cities">déconnexion</p>
                </div>
             </div>
     <!-- end menu of profile -->
@@ -86,7 +86,11 @@ export default {
     created(){
         this.getProducts()
     },
+    
     methods : {
+        logout(){
+        this.$store.commit('logout')
+        },
         stateEcour(state){
 
             if(state == 'enCoureF' || state == 'confirmer' || state == 'livraison'){
